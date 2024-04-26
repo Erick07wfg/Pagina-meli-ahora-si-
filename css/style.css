@@ -1,0 +1,153 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* font-weight: 500; <- esto no hace falta */
+    
+    box-sizing: border-box;
+    /* esto es mejor ponerlo aqui que en cada elemento */
+    
+}
+body{
+    /* https://developer.mozilla.org/es/docs/Learn/CSS/CSS_layout/Flexbox */
+    background-color: #ecf0f6;
+    display: flex;
+    flex-direction: column;
+    /* uso flex pq me ayuda a manejar mejor el contenido */
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* un poquito de flex para acomodar el navbar */
+    
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    /* esto para que se mantenga arriba del todo siempre */
+    
+    padding: 10px 20px;
+    /* padding parejo */
+
+    width: 100%;
+    height: 80px;
+
+    /* background-color: transparent; <- esto es transparente por defecto*/
+
+    background-color: #ffffff;;
+    
+    box-shadow: 0 0 10px 2px #91abff3f;
+    /* & > h1 {
+        padding: 15px; esta mal centrar las cosas asi
+    } */
+}
+/* procuren mejorar el nombre de clases e id, y usar clases para estilar */
+/* los id tienen demasiada prioridad y no son reutilizables */
+#nav li{
+    list-style-type: none;
+}
+#nav li a{
+    text-decoration: none;
+    background-color: #ffffff;
+    color: #0334958f;
+    font-size: 20px;
+    box-shadow: 0 0 10px #91abff3f;
+
+    /* display: inline-flex; */
+    /* esto esta supremamente mal pq es impredecible, USA FLEX */
+
+    /* margin: 10px; */
+    /* igual es mejor separar con flex ya que esto es dificil de controlar */
+
+    padding: 10px;
+
+
+    /* transition: 1.0s; */
+    /* fatal para el rendimiento y la ux */
+    /* las transiciones deben ser rapidas y aplicadas al la menor cantidad de propiedades posibles */
+    /* lo contrario causa una sobrecarga a la pagina (esperando cambios) */
+
+    
+    /* mejor */
+    /* transition: scale 0.3s, box-shadow 0.3s; */
+    /* esta manera es la mas comun ya que puedes ajustar la duracion de tansicion de cada propiedad */
+
+    transition-property: scale, box-shadow;
+    transition-duration: 0.3s;
+    /* pero esta forma es mas util cuando todo tiene la misma duración */
+
+    /* el tiempo ideal son alrededor de 0.3, 0.5 roza lo lento pero es aceptable */
+    /* esto me ayudo mucho: */
+    /* https://uxdesign.cc/the-ultimate-guide-to-proper-use-of-animation-in-ux-10bd98614fa9 */
+
+    cursor: pointer;
+
+    /* border: 0.5px solid #ffffff; */
+    /* no entiendo el proposito de esto */
+
+    border-radius: 5px;
+}
+
+/* posicionamos los links (o no c que son) */
+#nav > ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#nav li:hover{
+    scale: 1.05;
+    box-shadow: 0 0 10px #679cffa5;
+
+    /* transition: 1.0s; */
+    /* border-radius: 5px; */
+    /* no hace falta volver a declarar los estilos */
+
+}
+.menu {
+    display: flex;
+    border: none;
+    /* display: inline-block; */
+    /* de nuevo, todos estos display raros estan prohibidos :c */
+
+}
+
+.menu-btn {
+    background-color: #0334958f;
+    color: #ffffff;
+    border: 0.5px solid #7e89ff5b;
+    cursor: pointer;
+    padding: 10px 30px;
+    font-size: 30px;
+    border-radius: 10px;
+}
+
+.menu-list {
+    margin-left: 130px;
+    border-radius: 20px ;
+    list-style-type: none;
+    display: none;
+    position: absolute;
+    border: #000000;
+    background-color: #0334953f;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    font-size: 20px;
+}
+
+.menu-list div {
+    padding:20px 20px;
+}
+
+.menu-list div a {
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+}
+
+.menu:hover .menu-list {
+    display: flex;
+}
